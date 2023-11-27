@@ -20,13 +20,14 @@ public class Car {
     private String brand;
     private String model;
     private int year;
-    private CarStatus status;
-    private CarType type;
+    private String status;
+    private String type;
 
-    public Car(String brand, String model, CarStatus status, CarType type) {
+    public Car(String brand, String model, CarStatus status, CarType type, int year) {
         this.brand = brand;
         this.model = model;
-        this.status = status;
-        this.type = type;
+        this.status = status.getStringValue();
+        this.type = type.getStringValue();
+        this.year = year;
     }
 }
