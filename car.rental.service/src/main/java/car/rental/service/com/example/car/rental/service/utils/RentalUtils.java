@@ -5,7 +5,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import jakarta.validation.ValidationException;
-import car.rental.service.com.example.car.rental.service.exceptions.BadDatesException;
+import car.rental.service.com.example.car.rental.service.exceptions.WrongDatesException;
 
 public class RentalUtils {
 
@@ -21,11 +21,11 @@ public class RentalUtils {
         }
 
         if (!isSameFormat(endDate.toString())) {
-            throw new BadDatesException("Wrong end date format.");
+            throw new WrongDatesException("Wrong end date format.");
         }
 
         if (!endDate.isAfter(startDate)) {
-            throw new BadDatesException("Start date should be before end date.");
+            throw new WrongDatesException("Start date should be before end date.");
         }
     }
 
