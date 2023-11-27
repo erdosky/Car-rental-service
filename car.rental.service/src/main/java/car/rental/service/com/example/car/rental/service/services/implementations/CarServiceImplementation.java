@@ -41,7 +41,7 @@ public class CarServiceImplementation implements CarService{
     }
 
     @Override
-    public boolean exist(String model) {
+    public boolean exist(String model, String s, int year) {
         return carRepository.findByModel(model) != null;
     }
 

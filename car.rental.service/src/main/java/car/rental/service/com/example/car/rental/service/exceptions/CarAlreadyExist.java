@@ -1,7 +1,7 @@
 package car.rental.service.com.example.car.rental.service.exceptions;
 
-public class BadDatesException extends RuntimeException {
-    public BadDatesException(String errorMessage) {
+public class CarAlreadyExist extends RuntimeException {
+    public CarAlreadyExist(String errorMessage) {
         super(errorMessage);
     }
 }
