@@ -14,8 +14,17 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+<<<<<<< 85f5bce44117e8fb270e0b8d61ab2e13a402ff28
+    private String brand;
+    private String model;
+    @Column(name="year_of_production")
+    private int year;
+    private String status;
+    private String type;
+=======
     private String title;
     private String author;
+>>>>>>> 8003c62b44c41e20ba868e1fa8c0189712115487
 
     private String publisher;
 
