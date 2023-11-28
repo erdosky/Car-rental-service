@@ -53,7 +53,7 @@ public class CarController {
             if (carService.exist(brand, model, year)) {
                 throw new CarAlreadyExist(CAR_ALREADY_EXIST);
             }
-            Car car = new Car(brand, model, statusEnum.getStringValue(), typeEnum.getStringValue(), year);
+            Car car = new Car(brand, model, year, statusEnum, typeEnum);
             carService.save(car);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("wrong status or type.", HttpStatus.BAD_REQUEST);
@@ -62,7 +62,7 @@ public class CarController {
     }
 
 
-    @Operation(summary = "Get all cars by brand")
+    @Operation(summary = "all cars by brand")
     @GetMapping("/allByBrand")
     public ResponseEntity <List<Car>> getAllByBrand(
             @RequestParam String brand, HttpSession session) {
@@ -75,7 +75,7 @@ public class CarController {
         return new ResponseEntity <>(cars, HttpStatus.OK);
     }
 
-    @Operation(summary = "Get all cars by type")
+    @Operation(summary = "all cars by type")
     @GetMapping("/allByType")
     public ResponseEntity <List <Car>> getAllByType(
             @RequestParam String type, HttpSession session) {
