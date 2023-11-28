@@ -10,7 +10,7 @@ public class Application {
 
 		SpringApplication.run(Application.class, args);
 
-		String url = "http://localhost:8080/swagger-ui/index.html";
+		String url = "http://localhost:8080/h2-console/login.jsp";
 		openBrowser(url);
 	}
 

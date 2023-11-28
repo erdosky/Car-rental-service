@@ -1,11 +1,12 @@
 package car.rental.service.com.example.car.rental.service.utils;
 
+import car.rental.service.com.example.car.rental.service.exceptions.WrongDatesException;
+import jakarta.validation.ValidationException;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import jakarta.validation.ValidationException;
-import car.rental.service.com.example.car.rental.service.exceptions.WrongDatesException;
 
 public class RentalUtils {
 
@@ -13,7 +14,7 @@ public class RentalUtils {
         LocalDate startDate = LocalDate.now();
 
         if (!isValidCarModel(carModel)) {
-            throw new ValidationException("Book title is not valid");
+            throw new ValidationException("Car model is not valid");
         }
 
         if (!isValidEmail(userEmail)) {

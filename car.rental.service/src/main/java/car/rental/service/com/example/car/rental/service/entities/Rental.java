@@ -17,7 +17,7 @@ public class Rental {
     private LocalDate endDate;
 
     @ManyToOne
-    @JoinColumn(name = "book_id")
+    @JoinColumn(name = "car_id")
     Car car;
 
     @ManyToOne
