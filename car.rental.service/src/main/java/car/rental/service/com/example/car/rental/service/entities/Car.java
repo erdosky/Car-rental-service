@@ -19,6 +19,7 @@ public class Car {
     private Long id;
     private String brand;
     private String model;
+    @Column(name="year_of_production")
     private int year;
     private String status;
     private String type;
