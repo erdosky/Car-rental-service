@@ -15,13 +15,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Size(min = 3, message = "Username must be at least 3 characters long")
+    @Size(min = 3, message = "min 3 characters")
     private String username;
 
-    @Email(message = "Invalid email address")
+    @Email(message = "wrong email address")
     private String email;
 
-    @Size(min = 6, message = "Password must be at least 6 characters long")
+    @Size(min = 4, message = "min 4 characters")
     private String password;
 
     public User(String username, String email, String password) {

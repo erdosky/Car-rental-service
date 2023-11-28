@@ -42,7 +42,7 @@ public class CarController {
             @RequestParam String status,
             @Parameter(description = "Type. Values to choose : Sedan, SUV, Coupe, Convertible, Hatchback, Station Wagon, Pickup Truck, Sports Car, Minivan, Electric")
             @RequestParam String type,
-            @RequestParam int year,
+            @RequestParam String year,
             HttpSession session
     ) {
         validateSession(session, userService);
@@ -53,7 +53,7 @@ public class CarController {
             if (carService.exist(brand, model, year)) {
                 throw new CarAlreadyExist(CAR_ALREADY_EXIST);
             }
-            Car car = new Car(brand, model, statusEnum, typeEnum, year);
+            Car car = new Car(brand, model, statusEnum.getStringValue(), typeEnum.getStringValue(), year);
             carService.save(car);
         } catch (IllegalArgumentException e) {
             return new ResponseEntity<>("wrong status or type.", HttpStatus.BAD_REQUEST);
