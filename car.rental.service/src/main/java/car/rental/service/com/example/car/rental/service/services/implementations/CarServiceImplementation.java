@@ -26,7 +26,7 @@ public class CarServiceImplementation implements CarService{
 
     @Override
     public List<Car> findAllByType(CarType type) {
-        return carRepository.findAllByType(type.getStringValue());
+        return carRepository.findAllByType(type);
     }
 
     @Override
