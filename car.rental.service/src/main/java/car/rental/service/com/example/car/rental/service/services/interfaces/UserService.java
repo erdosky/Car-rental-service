@@ -1,7 +1,8 @@
 package car.rental.service.com.example.car.rental.service.services.interfaces;
 
-import org.springframework.stereotype.Service;
 import car.rental.service.com.example.car.rental.service.entities.User;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 
 @Service
@@ -10,7 +11,7 @@ public interface UserService {
 
     User findByUsername(String username);
 
-    List <User> findAll();
+    List<User> findAll();
 
     void deleteByUsername(String username);
 
