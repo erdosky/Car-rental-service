@@ -1,11 +1,14 @@
+
+
 package car.rental.service.com.example.car.rental.service.services.implementations;
+
 
 import car.rental.service.com.example.car.rental.service.entities.User;
 import car.rental.service.com.example.car.rental.service.repositories.UserRepository;
 import car.rental.service.com.example.car.rental.service.services.interfaces.UserService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,18 +30,23 @@ public class UserServiceImplementation implements UserService {
     }
 
     @Override
-    public List <User> findAll() {
+    public List<User> findAll() {
         return userRepository.findAllBy();
     }
 
     @Override
     public void deleteByUsername(String username) {
-        userRepository.deleteByUsername(username);
+        if (userRepository.findByUsername(username) != null) {
+            userRepository.deleteByUsername(username);
+        }
     }
 
     @Override
     public void deleteByEmail(String email) {
-        userRepository.deleteByEmail(email);
+        if (userRepository.findByEmail(email) != null) {
+            userRepository.deleteByEmail(email);
+        }
+
     }
 
     @Override

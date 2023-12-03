@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import static car.rental.service.com.example.car.rental.service.Constants.*;
 import static car.rental.service.com.example.car.rental.service.utils.UserUtils.validateUser;
+
 @RestController
 @RequestMapping("/auth")
 @Tag(name = "Authorization")
@@ -51,12 +52,12 @@ public class AuthorizationController {
         User user = new User(username, email, hashedPassword);
         userService.save(user);
 
-        return new ResponseEntity <>(USER_CREATED, HttpStatus.CREATED);
+        return new ResponseEntity<>(USER_CREATED, HttpStatus.CREATED);
     }
 
     @Operation(summary = "User Login")
     @PostMapping("/login")
-    public ResponseEntity <String> loginUser(@RequestParam String username, @RequestParam String password, HttpSession session) {
+    public ResponseEntity<String> loginUser(@RequestParam String username, @RequestParam String password, HttpSession session) {
         User user = userService.findByUsername(username);
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -64,16 +65,16 @@ public class AuthorizationController {
         if (user != null && passwordEncoder.matches(password, user.getPassword())) {
             session.setAttribute("username", username);
             session.setAttribute("password", password);
-            return new ResponseEntity <>("User logged in", HttpStatus.OK);
+            return new ResponseEntity<>("User logged in", HttpStatus.OK);
         } else {
-            return new ResponseEntity <>("wrong username or password", HttpStatus.UNAUTHORIZED);
+            return new ResponseEntity<>("wrong username or password", HttpStatus.UNAUTHORIZED);
         }
     }
 
     @Operation(summary = "User Logout")
     @PostMapping("/logout")
-    public ResponseEntity <String> logoutUser(HttpSession session) {
+    public ResponseEntity<String> logoutUser(HttpSession session) {
         session.invalidate();
-        return new ResponseEntity <>("User logged out.", HttpStatus.OK);
+        return new ResponseEntity<>("User logged out.", HttpStatus.OK);
     }
 }

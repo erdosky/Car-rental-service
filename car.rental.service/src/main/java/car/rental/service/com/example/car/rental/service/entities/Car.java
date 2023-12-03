@@ -18,13 +18,13 @@ public class Car {
     private Long id;
     private String brand;
     private String model;
-    @Column(name="year_of_production")
+    @Column(name = "year_of_production")
     private String year;
     private String status;
     private String type;
 
 
-   public Car(String brand, String model, String year, CarStatus status, CarType type) {
+    public Car(String brand, String model, String year, CarStatus status, CarType type) {
         this.brand = brand;
         this.model = model;
         this.year = year;

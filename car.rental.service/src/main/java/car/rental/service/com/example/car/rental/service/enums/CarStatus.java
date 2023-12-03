@@ -1,9 +1,7 @@
 package car.rental.service.com.example.car.rental.service.enums;
 
 public enum CarStatus {
-    AVAILABLE("Available"),
-    UNAVAILABLE("Unavailable"),
-    RENTED("Rented");
+    AVAILABLE("Available"), UNAVAILABLE("Unavailable"), RENTED("Rented");
 
     private final String stringValue;
 

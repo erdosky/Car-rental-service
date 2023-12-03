@@ -41,7 +41,7 @@ public class RentalTests {
         Rental expectedRental = new Rental();
         when(rentalRepository.findById(id)).thenReturn(Optional.of(expectedRental));
 
-        Optional <Rental> result = rentalService.findById(id);
+        Optional<Rental> result = rentalService.findById(id);
 
         assertTrue(result.isPresent());
         assertEquals(expectedRental, result.get());
@@ -53,7 +53,7 @@ public class RentalTests {
         Long id = 1L;
         when(rentalRepository.findById(id)).thenReturn(Optional.empty());
 
-        Optional <Rental> result = rentalService.findById(id);
+        Optional<Rental> result = rentalService.findById(id);
 
         assertFalse(result.isPresent());
         verify(rentalRepository, times(1)).findById(id);
@@ -64,7 +64,7 @@ public class RentalTests {
         List<Rental> expectedRentals = Arrays.asList(new Rental(), new Rental());
         when(rentalRepository.findAll()).thenReturn(expectedRentals);
 
-        List <Rental> result = rentalService.getAll();
+        List<Rental> result = rentalService.getAll();
 
         assertEquals(expectedRentals, result);
         verify(rentalRepository, times(1)).findAll();
@@ -73,10 +73,10 @@ public class RentalTests {
     @Test
     public void testGetAllByUser() {
         User user = new User();
-        List <Rental> expectedRentals = Arrays.asList(new Rental(), new Rental());
+        List<Rental> expectedRentals = Arrays.asList(new Rental(), new Rental());
         when(rentalRepository.getAllByUser(user)).thenReturn(expectedRentals);
 
-        List <Rental> result = rentalService.getAllByUser(user);
+        List<Rental> result = rentalService.getAllByUser(user);
 
         assertEquals(expectedRentals, result);
         verify(rentalRepository, times(1)).getAllByUser(user);

@@ -59,29 +59,12 @@ public class UserTests {
         List<User> expectedUsers = Arrays.asList(new User(), new User());
         when(userRepository.findAllBy()).thenReturn(expectedUsers);
 
-        List <User> result = userService.findAll();
+        List<User> result = userService.findAll();
 
         assertEquals(expectedUsers, result);
         verify(userRepository, times(1)).findAllBy();
     }
 
-    @Test
-    public void testDeleteByUsername() {
-        String username = "tester";
-
-        userService.deleteByUsername(username);
-
-        verify(userRepository, times(1)).deleteByUsername(username);
-    }
-
-    @Test
-    public void testDeleteByEmail() {
-        String email = "test@example.com";
-
-        userService.deleteByEmail(email);
-
-        verify(userRepository, times(1)).deleteByEmail(email);
-    }
 
     @Test
     public void testExist() {

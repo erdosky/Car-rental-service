@@ -1,16 +1,12 @@
 package car.rental.service.com.example.car.rental.service.controllers;
 
-
-import car.rental.service.com.example.car.rental.service.entities.Car;
 import car.rental.service.com.example.car.rental.service.entities.Rental;
 import car.rental.service.com.example.car.rental.service.entities.User;
 import car.rental.service.com.example.car.rental.service.exceptions.CarNotFoundException;
 import car.rental.service.com.example.car.rental.service.exceptions.UserNotFoundException;
-import car.rental.service.com.example.car.rental.service.exceptions.RentalNotFoundException;
 import car.rental.service.com.example.car.rental.service.services.interfaces.CarService;
 import car.rental.service.com.example.car.rental.service.services.interfaces.RentalService;
 import car.rental.service.com.example.car.rental.service.services.interfaces.UserService;
-import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.ValidationException;
@@ -21,10 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
-import static car.rental.service.com.example.car.rental.service.Constants.*;
-import static car.rental.service.com.example.car.rental.service.utils.RentalUtils.validateRentalRequest;
 import static car.rental.service.com.example.car.rental.service.utils.SessionUtils.validateSession;
 
 @RestController
@@ -39,81 +32,51 @@ public class RentalController {
     @Autowired
     private RentalService rentalService;
 
-    @Operation(summary = "new rental")
     @PostMapping("/create")
-    public ResponseEntity<String> createRental(
-            @RequestParam LocalDate endDate,
-            @RequestParam String model,
-            @RequestParam String email,
-            HttpSession session) {
+    public ResponseEntity<String> createRental(@RequestParam LocalDate endDate, @RequestParam String model, @RequestParam String email, HttpSession session) {
+
         validateSession(session, userService);
+
         try {
-            validateRentalRequest(endDate, model, email);
-
-            User user = userService.findByEmail(email);
-            Car car = carService.findByModel(model);
-            LocalDate startDate = LocalDate.now();
-
-            if (user != null) {
-                if (car != null) {
-                    Rental rental = new Rental(startDate, endDate, car, user);
-                    rentalService.save(rental);
-                    return new ResponseEntity <>("Rental created", HttpStatus.CREATED);
-                }
-                throw new CarNotFoundException(CAR_NOT_FOUND);
-            }
-            throw new UserNotFoundException(USER_WITH_GIVEN_EMAIL_NOT_FOUND);
-
-        } catch (ValidationException ve) {
-            return new ResponseEntity <>(ve.getMessage(), HttpStatus.BAD_REQUEST);
+            Rental rental = rentalService.createRental(endDate, model, email);
+            return ResponseEntity.ok("Rental created: " + rental.toString());
+        } catch (ValidationException | CarNotFoundException | UserNotFoundException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
 
-    @Operation(summary = "rental with given id")
     @GetMapping("/byId")
-    public ResponseEntity <Rental> getRental(@RequestParam Long id, HttpSession session) {
+    public ResponseEntity<Rental> getRental(@RequestParam Long id, HttpSession session) {
         validateSession(session, userService);
-        Optional<Rental> rental = rentalService.findById(id);
-
-        return rental.map(value -> new ResponseEntity <>(value, HttpStatus.OK)).orElseGet(() -> new ResponseEntity <>(null, HttpStatus.NOT_FOUND));
+        return rentalService.findById(id).map(rental -> ResponseEntity.ok(rental)).orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @Operation(summary = "all users rentals")
     @GetMapping("/allByUser")
-    public ResponseEntity <List<Rental>> getAllByUser(@RequestParam String username, HttpSession session) {
+    public ResponseEntity<List<Rental>> getAllByUser(@RequestParam User user, HttpSession session) {
         validateSession(session, userService);
-        User user = userService.findByUsername(username);
-        List <Rental> rentals = rentalService.getAllByUser(user);
-        return new ResponseEntity <>(rentals, HttpStatus.OK);
+        List<Rental> rentals = rentalService.getAllByUser(user);
+        return rentals.isEmpty() ? ResponseEntity.noContent().build() : ResponseEntity.ok(rentals);
     }
 
-    @Operation(summary = "all rentals")
     @GetMapping("/all")
-    public List <Rental> getAll(HttpSession session) {
+    public ResponseEntity<List<Rental>> getAllRentals(HttpSession session) {
         validateSession(session, userService);
-        return rentalService.getAll();
+        List<Rental> rentals = rentalService.getAll();
+        return ResponseEntity.ok(rentals);
     }
 
-    @Operation(summary = "delete rental by given id")
     @DeleteMapping("/byId")
-    public ResponseEntity <String> deleteById(@RequestParam Long id, HttpSession session) {
+    public ResponseEntity<String> deleteRentalById(@RequestParam Long id, HttpSession session) {
         validateSession(session, userService);
-        if (rentalService.exist(id)) {
-            rentalService.deleteById(id);
-            return new ResponseEntity <>("Rental with id: " + id + "removed", HttpStatus.OK);
-        }
-        throw new RentalNotFoundException(RENTAL_NOT_FOUND);
+        rentalService.deleteById(id);
+        return ResponseEntity.ok("Rental with id " + id + " removed");
     }
 
-    @Operation(summary = "update rental end date")
     @PutMapping("/updateEndDate")
-    public ResponseEntity <String> updateEndDate(@RequestParam Long id, @RequestParam LocalDate newEndDate, HttpSession session) {
+    public ResponseEntity<String> updateRentalEndDate(@RequestParam Long id, @RequestParam LocalDate newEndDate, HttpSession session) {
+
         validateSession(session, userService);
-        if (rentalService.exist(id)) {
-            rentalService.updateEndDate(id, newEndDate);
-            return new ResponseEntity <>("Rental with id: " + id + " updated", HttpStatus.OK);
-        } else {
-            throw new RentalNotFoundException(RENTAL_NOT_FOUND);
-        }
+        rentalService.updateEndDate(id, newEndDate);
+        return ResponseEntity.ok("Rental end date updated for id: " + id);
     }
 }
