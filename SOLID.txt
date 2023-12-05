@@ -1,0 +1,8 @@
+
+SINGLE RESPONSIBILITY - klasy są zminimalizowane, jak najmniejsze, odpowiadające tylko za 1 rzecz, np. Car, User
+
+OPEN/CLOSED - klasy są otwarte na rozbudowe bez potrzeby modyfikowania ich, dziedziczą po sobie
+
+LISKOV SUBSTITUTION - klasy implementująće interfejsy nadpisują i wykorzystują wszystkie ich metody, np. Service
+
+INTERFACE SERGREGATION - interfejsy znajdują sie w services sa mozliwie jak najmniejsze

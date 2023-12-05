@@ -4,7 +4,6 @@ import car.rental.service.com.example.car.rental.service.entities.Rental;
 import car.rental.service.com.example.car.rental.service.entities.User;
 import car.rental.service.com.example.car.rental.service.exceptions.CarNotFoundException;
 import car.rental.service.com.example.car.rental.service.exceptions.UserNotFoundException;
-import car.rental.service.com.example.car.rental.service.services.interfaces.CarService;
 import car.rental.service.com.example.car.rental.service.services.interfaces.RentalService;
 import car.rental.service.com.example.car.rental.service.services.interfaces.UserService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,8 +26,7 @@ public class RentalController {
 
     @Autowired
     private UserService userService;
-    @Autowired
-    private CarService carService;
+
     @Autowired
     private RentalService rentalService;
 

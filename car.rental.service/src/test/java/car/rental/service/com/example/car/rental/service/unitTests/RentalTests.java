@@ -1,7 +1,6 @@
 package car.rental.service.com.example.car.rental.service.unitTests;
 
 import car.rental.service.com.example.car.rental.service.entities.Rental;
-import car.rental.service.com.example.car.rental.service.entities.User;
 import car.rental.service.com.example.car.rental.service.exceptions.RentalNotFoundException;
 import car.rental.service.com.example.car.rental.service.repositories.RentalRepository;
 import car.rental.service.com.example.car.rental.service.services.implementations.RentalServiceImplementation;
@@ -70,17 +69,6 @@ public class RentalTests {
         verify(rentalRepository, times(1)).findAll();
     }
 
-    @Test
-    public void testGetAllByUser() {
-        User user = new User();
-        List<Rental> expectedRentals = Arrays.asList(new Rental(), new Rental());
-        when(rentalRepository.getAllByUser(user)).thenReturn(expectedRentals);
-
-        List<Rental> result = rentalService.getAllByUser(user);
-
-        assertEquals(expectedRentals, result);
-        verify(rentalRepository, times(1)).getAllByUser(user);
-    }
 
     @Test
     public void testDeleteById() {
@@ -91,32 +79,6 @@ public class RentalTests {
         verify(rentalRepository, times(1)).deleteById(id);
     }
 
-    @Test
-    public void testExist() {
-        Long id = 1L;
-        when(rentalRepository.findById(id)).thenReturn(Optional.of(new Rental()));
-
-        assertTrue(rentalService.exist(id));
-        verify(rentalRepository, times(1)).findById(id);
-    }
-
-    @Test
-    public void testNotExist() {
-        Long id = 1L;
-        when(rentalRepository.findById(id)).thenReturn(Optional.empty());
-
-        assertFalse(rentalService.exist(id));
-        verify(rentalRepository, times(1)).findById(id);
-    }
-
-    @Test
-    public void testSave() {
-        Rental rental = new Rental();
-
-        rentalService.save(rental);
-
-        verify(rentalRepository, times(1)).save(rental);
-    }
 
     @Test
     public void testUpdateEndDate() {

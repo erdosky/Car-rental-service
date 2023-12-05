@@ -22,17 +22,14 @@ import static car.rental.service.com.example.car.rental.service.utils.UserUtils.
 
 @RestController
 @RequestMapping("/auth")
-@Tag(name = "Authorization")
+@Tag(name = "Authorization", description = "Authorization operations")
 public class AuthorizationController {
     @Autowired
     private UserService userService;
 
     @Operation(summary = "new user")
     @PostMapping("/register")
-    public ResponseEntity<String> createUser(
-            @RequestParam String username,
-            @RequestParam String email,
-            @RequestParam String password) {
+    public ResponseEntity<String> createUser(@RequestParam String username, @RequestParam String email, @RequestParam String password) {
 
         if (!validateUser(email, username, password)) {
             throw new ValidationException(INVALID_DATA);
