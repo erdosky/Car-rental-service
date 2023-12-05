@@ -21,7 +21,7 @@ public class User {
     @Email(message = "wrong email address")
     private String email;
 
-    @Size(min = 4, message = "min 4 characters")
+    @Size(min = 6, message = "min 6 characters")
     private String password;
 
     public User(String username, String email, String password) {

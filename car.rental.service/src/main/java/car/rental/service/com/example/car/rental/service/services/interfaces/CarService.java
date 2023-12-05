@@ -16,10 +16,6 @@ public interface CarService {
 
     void deleteByModel(String model);
 
-    boolean exist(String brand, String model, String year);
-
-    void save(Car car);
-
     boolean exist(String model);
 
     void updateModel(String oldModel, String newModel);

@@ -10,8 +10,6 @@ import java.util.Optional;
 public interface RentalRepository extends JpaRepository<Rental, Long> {
     Optional<Rental> findById(Long id);
 
-    Rental findByUser(User user);
-
     List<Rental> getAllByUser(User user);
 
     void deleteById(Long id);

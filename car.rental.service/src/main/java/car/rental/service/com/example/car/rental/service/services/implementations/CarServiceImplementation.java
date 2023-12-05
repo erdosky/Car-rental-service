@@ -55,15 +55,6 @@ public class CarServiceImplementation implements CarService {
         carRepository.deleteByModel(model);
     }
 
-    @Override
-    public boolean exist(String brand, String model, String year) {
-        return false;
-    }
-
-    @Override
-    public void save(Car car) {
-
-    }
 
     @Override
     public boolean exist(String model) {

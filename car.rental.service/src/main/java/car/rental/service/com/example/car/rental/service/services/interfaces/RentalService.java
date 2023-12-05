@@ -18,10 +18,6 @@ public interface RentalService {
 
     void deleteById(Long id);
 
-    boolean exist(Long id);
-
-    void save(Rental rental);
-
     void updateEndDate(Long rentalId, LocalDate newEndDate);
 
     Rental createRental(LocalDate endDate, String model, String email);

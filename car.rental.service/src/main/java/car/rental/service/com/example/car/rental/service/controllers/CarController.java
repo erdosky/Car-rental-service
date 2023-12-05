@@ -4,6 +4,7 @@ import car.rental.service.com.example.car.rental.service.entities.Car;
 import car.rental.service.com.example.car.rental.service.enums.CarType;
 import car.rental.service.com.example.car.rental.service.services.interfaces.CarService;
 import car.rental.service.com.example.car.rental.service.services.interfaces.UserService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +16,7 @@ import static car.rental.service.com.example.car.rental.service.utils.SessionUti
 
 @RestController
 @RequestMapping("/car")
+@Tag(name = "Cars", description = "Cars operations")
 public class CarController {
 
     @Autowired

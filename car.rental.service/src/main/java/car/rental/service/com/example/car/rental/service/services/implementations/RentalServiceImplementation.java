@@ -75,15 +75,6 @@ public class RentalServiceImplementation implements RentalService {
         rentalRepository.deleteById(id);
     }
 
-    @Override
-    public boolean exist(Long id) {
-        return false;
-    }
-
-    @Override
-    public void save(Rental rental) {
-
-    }
 
     @Override
     public void updateEndDate(Long rentalId, LocalDate newEndDate) {
