@@ -11,9 +11,14 @@
   <li><strong>Rental Process Management:</strong> Streamlines the entire car rental process from booking to return, enhancing efficiency and user satisfaction.</li>
 </ul>
 
+![auth](https://github.com/erdosky/Car-rental-service/assets/138824670/ff7ba7e4-ffb5-4942-bf48-e0d89f4ab5c9)
+![rentals](https://github.com/erdosky/Car-rental-service/assets/138824670/0b023ca7-e3fe-4bfd-b46e-96a9932a7742)
+![cars](https://github.com/erdosky/Car-rental-service/assets/138824670/b11d81c6-65e6-4f0a-8d5e-4732e06e4b6d)
+
 <h3>Database Configuration</h3>
 
 <p>The system employs the H2 Database, an embedded option within Spring, ensuring a lightweight and responsive database solution. The database is configured to preserve its state between application shutdowns and startups, providing data persistence without requiring external database management systems.</p>
+
 
 <ul>
   <li><strong>Access URL:</strong> <a href="http://localhost:8080/h2-console/login.jsp">H2 Database Console</a></li>
