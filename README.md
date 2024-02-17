@@ -6,9 +6,25 @@
 
 <ul>
   <li><strong>Car Management:</strong> Allows for comprehensive control over the car inventory, including additions, updates, and deletions.</li>
+
+![cars](https://github.com/erdosky/Car-rental-service/assets/138824670/5007c558-9b13-46db-bf18-bfa44e83bcde)
+
+  
   <li><strong>User Management:</strong> Facilitates the administration of user accounts and profiles, ensuring a seamless user experience.</li>
+
+![users](https://github.com/erdosky/Car-rental-service/assets/138824670/bcd844d9-3454-4e92-a047-0c682b86de74)
+
+
   <li><strong>Authorization:</strong> Implements secure authorization mechanisms to protect user data and system integrity.</li>
+
+![auth](https://github.com/erdosky/Car-rental-service/assets/138824670/1d223460-c4b6-48d9-a3e0-721b0c2d25bf)
+
+  
   <li><strong>Rental Process Management:</strong> Streamlines the entire car rental process from booking to return, enhancing efficiency and user satisfaction.</li>
+
+![rentals](https://github.com/erdosky/Car-rental-service/assets/138824670/719a5b4d-e57d-4eea-a19e-f13e8378b905)
+
+  
 </ul>
 
 <h3>Database Configuration</h3>
